@@ -52,15 +52,20 @@ function App() {
         max_tokens: 150,
         top_p: 1.0,
         frequency_penalty: 0.5,
-        presence_penalty: 0.0,
-        stop: ['\n']
+        presence_penalty: 0.0
       }).then((response) => {
         let text = response.data.choices[0].text
         if (text && text.length > 0) {
           setConversation(`${getPrompt(question)}${text}\n`)
           resolve(text)
+          //Clear textfield on site
+          setQuestion('')
+          
+
         } else {
           reject('Keine Antwort erhalten')
+          //promt leeren 
+
         }
       }).catch((e) => {
         reject(e)
