@@ -31,16 +31,13 @@ export function MainContent({
   if (!showConversationDebug) {
     if (apiKey === '' && !loading) {
       return <center>
-        <span className={'fuschia'}>Please Add your Api Key</span>
+        <span className={'fuschia'}>Bitte füge einen API Key ein</span>
         <br/>
-        <a href={'https://beta.openai.com/account/api-keys'} target={'_blank'} className={'blue hover'}>
-          Click here to get your API Key
-        </a>
         <br/>
       </center>
     }
     if (conversationHistory.length === 0 && !loading) {
-      return <center className={'green'}>Ask a question and the AI will respond<br/></center>
+      return <center className={'green'}>Stelle eine Frage, die KI wird antworten<br/></center>
     }
     return <>
       {conversationHistory.map((msg, index) => {

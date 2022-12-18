@@ -7,21 +7,21 @@ import {fillStringLength} from './__helper__/text-helper'
 import {MainContent} from './chat/ChatSection'
 
 function defaultConversation(aiName, attributes) {
-  return `The following is a conversation with an AI called ${aiName}.
-The AI is ${attributes}.\n\n`
+  return `Es folgt ein Gespräch mit einer KI namens ${aiName}.
+Die KI ist ${attributes}.\n\n`
 }
 
 function getEngineId() {
-  return 'text-davinci-002'
+  return 'text-davinci-003'
 }
 
 function App() {
-  const [aiName, setAiName] = useState('ai')
-  const [tempAiName, setTempAiName] = useState('ai')
-  const [attributes, setAttributes] = useState('clever and helpful')
-  const [tempAttributes, setTempAttributes] = useState('clever and helpful')
-  const [apiKey, setApiKey] = useState(localStorage.getItem('apiKey') || '')
-  const [tempApiKey, setTempApiKey] = useState(localStorage.getItem('apiKey') || '')
+  const [aiName, setAiName] = useState('DeinVater')
+  const [tempAiName, setTempAiName] = useState('DeinVater')
+  const [attributes, setAttributes] = useState('freundlich und sarkastisch')
+  const [tempAttributes, setTempAttributes] = useState('freundlich und sarkastisch')
+  const [apiKey, setApiKey] = useState(localStorage.getItem('apiKey') || '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')
+  const [tempApiKey, setTempApiKey] = useState(localStorage.getItem('apiKey') || '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')
 
   const [loading, setLoading] = useState(false)
 
@@ -60,7 +60,7 @@ function App() {
           setConversation(`${getPrompt(question)}${text}\n`)
           resolve(text)
         } else {
-          reject('No response')
+          reject('Keine Antwort erhalten')
         }
       }).catch((e) => {
         reject(e)
@@ -100,10 +100,10 @@ function App() {
     e.preventDefault()
 
     if (apiKey === '') {
-      setErrorMessage('Please enter an API key')
+      setErrorMessage('Bitte gib einen API Key ein!')
       return
     } else if (question === '') {
-      setErrorMessage('Please enter a question!')
+      setErrorMessage('Bitte gib eine Frage ein!')
       return
     } else {
       setErrorMessage(null)
@@ -175,7 +175,7 @@ function App() {
           <form onSubmit={poseQuestion}>
             <input type="text"
                    value={question}
-                   placeholder={'Ask a question...'}
+                   placeholder={'Stell deine Frage'}
                    spellCheck={false}
                    onChange={(e) => setQuestion(e.target.value)}/>
             {errorMessage && <span className={'fuschia'}>{errorMessage}</span>}
