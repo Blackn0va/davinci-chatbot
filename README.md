@@ -73,17 +73,3 @@ Here we just want want the AI has to say, like:
 Human: Hello, who are you?
 AI:    ${responseFromTheAI}
 ```
-
-### The Final Bot
-
-Wrapping that all up into a nice React Application and the Bot is ready to go! Below I have some examples.
-
-
-![image](https://user-images.githubusercontent.com/25004579/173056107-5c5475dc-68b0-4f83-87df-62b4fbbf0cda.png)
-![image](https://user-images.githubusercontent.com/25004579/173056430-a7af03d5-88a6-4a79-9d79-55b0da3e0e07.png)
-
-The Chatbot is hosted on Netlify and the source code is available on [Github](https://github.com/Wetwer/davinci-chatbot)
-
-[Chatbot on Netlify](https://text-davinci.netlify.com)
-
-Have fun, and I hope will find it useful in maybe finding your next Project Idea!
