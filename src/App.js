@@ -48,10 +48,10 @@ function App() {
     return new Promise((resolve, reject) => {
       openai.createCompletion(getEngineId(), {
         prompt: getPrompt(question),
-        temperature: 0,
-        max_tokens: 100,
+        temperature: 0.5,
+        max_tokens: 150,
         top_p: 1.0,
-        frequency_penalty: 0.2,
+        frequency_penalty: 0.5,
         presence_penalty: 0.0,
         stop: ['\n']
       }).then((response) => {
