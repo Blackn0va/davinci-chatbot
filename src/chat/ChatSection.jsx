@@ -21,6 +21,10 @@ export function MainContent({
       return <span className={'green'}>
         {index === length - 1 ? <TypeAnimation cursor={false}
                                                sequence={[msg.text]}
+                                                typeSpeed={1500}
+                                                backSpeed={1500}
+                                                loop={false}
+                                                speed={150}
                                                wrapper={'span'}
         /> : msg.text}
       </span>
