@@ -13,21 +13,16 @@ export function SettingsSection({
                            saveSettings,
                            resetConversation
                          }) {
-  function toHidden(tmpApiKey) {
-    if (tmpApiKey.length > 6 && tmpApiKey === apiKey) {
-      // get first 5 characters of api key the rest is hidden with •
-      return tmpApiKey.substring(0, 6) + '•'.repeat(tmpApiKey.length - 6)
-    }
-  }
+
 
   return <section id="aside" className="full md:half lg:quarter lg:screen-v-scroll flex row wrap">
     <div className="pt px">
       <form onSubmit={saveSettings}>
-        <span className={tempAiName !== aiName ? 'fuschia' : 'orange'}>AI Name</span>
+        <span className={tempAiName !== aiName ? 'fuschia' : 'orange'}>KI Name</span>
         <input type="text"
                spellCheck={false}
                value={tempAiName}
-               placeholder={'AI Name'}
+               placeholder={'KI Name'}
                onChange={onChangeAiName}/>
         <br/>
         <br/>
@@ -39,16 +34,10 @@ export function SettingsSection({
                onChange={onChangeAttributes}/>
         <br/>
         <br/>
-        <span className={tmpApiKey !== apiKey || tmpApiKey === '' ? 'fuschia' : 'orange'}>API Key</span>
-        <input type="text"
-               spellCheck={false}
-               value={toHidden(tmpApiKey)}
-               placeholder={'API Key'}
-               onChange={onChangeApiKey}/>
-        <button type="submit" style={{visibility: 'hidden'}}>Save</button>
+        <button type="submit" style={{visibility: 'hidden'}}>Speichern</button>
       </form>
-      <a href={'#'} onClick={saveSettings} className={'green hover'}>Save</a>
-      <a href={'#'} onClick={resetConversation} className={'fuschia hover'}>Reset</a>
+      <a href={'#'} onClick={saveSettings} className={'green hover'}>Speichern</a>
+      <a href={'#'} onClick={resetConversation} className={'fuschia hover'}>Zurücksetzen</a>
     </div>
   </section>
 }

@@ -37,7 +37,7 @@ function App() {
 
 
   function getPrompt(question) {
-    return `${conversation}Human:${question}\n
+    return `${conversation}Du:${question}\n
     ${aiName}:`
   }
 
@@ -121,14 +121,14 @@ function App() {
       // add message from human and message from AI
       setConversationHistory([
         ...conversationHistory,
-        {from: 'Human', text: question, color: 'secondary'},
+        {from: 'Du', text: question, color: 'secondary'},
         {from: aiName, text: response, color: 'primary'}
       ])
     }).catch((e) => {
       setLoading(false)
       setConversationHistory([
         ...conversationHistory,
-        {from: 'Human', text: question, color: 'secondary'},
+        {from: 'Du', text: question, color: 'secondary'},
         {from: aiName, text: 'No response', color: 'danger'}
       ])
       console.log(e)
@@ -151,7 +151,7 @@ function App() {
       <section id="content" className="full md:half lg:screen-v-scroll flex row wrap relative">
         <div className="full md:py px">
           <center>
-            <span className="large title white">davinci-chatbot</span>
+            <span className="large title white">OpenAI-Chatbot</span>
           </center>
           <br/>
           <br/>
@@ -162,8 +162,8 @@ function App() {
                        apiKey={apiKey}
                        aiName={aiName}/>
           {loading ? <>
-              Human: <span className={'blue'}>
-              {fillStringLength('Human', aiName)}
+              Du: <span className={'blue'}>
+              {fillStringLength('Du', aiName)}
               {question}
             </span>
               <center>

@@ -14,7 +14,7 @@ export function MainContent({
   function getBotMessage(msg, index, length) {
     if (msg.text === 'No response') {
       return <span className={'fuschia'}>
-        {fillStringLength(aiName, 'Human')}
+        {fillStringLength(aiName, 'Du')}
         <i className={'grey'}>{'// No Response'}</i>
         </span>
     } else {
@@ -42,8 +42,8 @@ export function MainContent({
     return <>
       {conversationHistory.map((msg, index) => {
         return <div key={index}>
-          {msg.from}: {msg.from === 'Human'
-          ? <span className={'blue'}>{fillStringLength('Human', aiName)}{msg.text}</span>
+          {msg.from}: {msg.from === 'Du'
+          ? <span className={'blue'}>{fillStringLength('Du', aiName)}{msg.text}</span>
           : getBotMessage(msg, index, conversationHistory.length)}
         </div>
       })}
