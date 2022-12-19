@@ -14,7 +14,6 @@ export function SettingsSection({
                            resetConversation
                          }) {
 
-
   return <section id="aside" className="full md:half lg:quarter lg:screen-v-scroll flex row wrap">
     <div className="pt px">
       <form onSubmit={saveSettings}>
@@ -33,8 +32,8 @@ export function SettingsSection({
                placeholder={'Attributes'}
                onChange={onChangeAttributes}/>
         <br/>
-        <br/>
-        <button type="submit" style={{visibility: 'hidden'}}>Speichern</button>
+        <br/> 
+       <button type="submit" style={{visibility: 'hidden'}}>Speichern</button>
       </form>
       <a href={'#'} onClick={saveSettings} className={'green hover'}>Speichern</a>
       <a href={'#'} onClick={resetConversation} className={'fuschia hover'}>Zurücksetzen</a>

@@ -14,14 +14,15 @@ Die KI ist ${attributes}.\n\n`
 function getEngineId() {
   return 'text-davinci-003'
 }
-
+//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
+//meiner sk-fmVPU3kT3Bgb7rcLWF3aT3BlbkFJwOzQT3cKoz61sGkNENQ
 function App() {
   const [aiName, setAiName] = useState('DeinVater')
   const [tempAiName, setTempAiName] = useState('DeinVater')
   const [attributes, setAttributes] = useState('freundlich und sarkastisch')
   const [tempAttributes, setTempAttributes] = useState('freundlich und sarkastisch')
-  const [apiKey, setApiKey] = useState(localStorage.getItem('apiKey') || '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')
-  const [tempApiKey, setTempApiKey] = useState(localStorage.getItem('apiKey') || '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')
+  const [apiKey, setApiKey] = useState(localStorage.getItem('apiKey') || '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')
+  const [tempApiKey, setTempApiKey] = useState(localStorage.getItem('apiKey') || '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')
 
   const [loading, setLoading] = useState(false)
 
@@ -34,7 +35,6 @@ function App() {
   const [question, setQuestion] = useState('')
 
   const [conversationHistory, setConversationHistory] = useState([])
-
 
   function getPrompt(question) {
     return `${conversation}Du:${question}\n
@@ -56,8 +56,17 @@ function App() {
       }).then((response) => {
         let text = response.data.choices[0].text
         if (text && text.length > 0) {
-          setConversation(`${getPrompt(question)}${text}\n`)
-          resolve(text)
+          setConversation(`${getPrompt(question)}${text} \n`)
+
+
+          //if text contains a link post the chat to the chatbox and the link in a new line
+          let link = text.match(/https?:\/\/[^\s]+/g)
+          if (link) {
+            link = link[0]
+            text = text.replace(link, '')
+          }
+
+          resolve(text + '\n' + link)
           //Clear textfield on site
           setQuestion('')
           
@@ -174,10 +183,10 @@ function App() {
               <br/>
               <br/>
             </>}
-
+ 
           <br/>
-
-          <form onSubmit={poseQuestion}>
+          
+                    <form onSubmit={poseQuestion}>
             <input type="text"
                    value={question}
                    placeholder={'Stell deine Frage'}
@@ -189,9 +198,10 @@ function App() {
       </section>
       <AsideSection showConversationDebug={showConversationDebug}
                     setShowConversationDebug={setShowConversationDebug}/>
+
     </div>
   </div>
 }
 
-
+ 
 export default App

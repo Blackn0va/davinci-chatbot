@@ -19,17 +19,23 @@ export function MainContent({
         </span>
     } else {
       return <span className={'green'}>
-        {index === length - 1 ? <TypeAnimation cursor={false}
-                                               sequence={[msg.text]}
-                                                typeSpeed={1500}
-                                                backSpeed={1500}
-                                                loop={false}
-                                                speed={150}
-                                               wrapper={'span'}
+        {index === length - 1 ? <TypeAnimation 
+                      autoStart={true}
+                      loop={false}
+                      cursor={false}
+                      hideCursorOnEnd={true}
+                      hideCursorOnStart={true}
+                      hideCursorOnType={true}
+                      hideCursorOnTypeAnimation={true}
+                      typespeed={1000}
+                      delay={0}  
+                      sequence={[msg.text]}
+                      wrapper={'span'}
         /> : msg.text}
       </span>
     }
   }
+
 
 
   if (!showConversationDebug) {
