@@ -65,8 +65,20 @@ function App() {
             link = link[0]
             text = text.replace(link, '')
           }
+          //if link = null then link = ''
+          if (link == null) {
+            resolve(text + '\n')
+          }
+          else
+          {
+            resolve(text + '\n' + link)
+          }
 
-          resolve(text + '\n' + link)
+          
+
+
+
+          
           //Clear textfield on site
           setQuestion('')
           
