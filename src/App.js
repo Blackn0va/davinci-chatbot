@@ -14,15 +14,16 @@ Die KI ist ${attributes}.\n\n`
 function getEngineId() {
   return 'text-davinci-003'
 }
+
 //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
 //meiner sk-fmVPU3kT3Bgb7rcLWF3aT3BlbkFJwOzQT3cKoz61sGkNENQ
 function App() {
   const [aiName, setAiName] = useState('DeinVater')
   const [tempAiName, setTempAiName] = useState('DeinVater')
-  const [attributes, setAttributes] = useState('sarkastisch freundlich')
-  const [tempAttributes, setTempAttributes] = useState('sarkastisch freundlich')
-  const [apiKey, setApiKey] = useState(localStorage.getItem('apiKey') || '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')
-  const [tempApiKey, setTempApiKey] = useState(localStorage.getItem('apiKey') || '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')
+  const [attributes, setAttributes] = useState('sarkastisch')
+  const [tempAttributes, setTempAttributes] = useState('sarkastisch')
+  const [apiKey, setApiKey] = useState(localStorage.getItem('apiKey') || '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')
+  const [tempApiKey, setTempApiKey] = useState(localStorage.getItem('apiKey') || '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')
 
   const [loading, setLoading] = useState(false)
 
@@ -36,8 +37,9 @@ function App() {
 
   const [conversationHistory, setConversationHistory] = useState([])
 
+
   function getPrompt(question) {
-    return `${conversation}Du:${question}\n
+    return `${conversation}Human:${question}\n
     ${aiName}:`
   }
 
@@ -48,11 +50,12 @@ function App() {
     return new Promise((resolve, reject) => {
       openai.createCompletion(getEngineId(), {
         prompt: getPrompt(question),
-        temperature: 0.5,
-        max_tokens: 500,
-        top_p: 0.3,
-        frequency_penalty: 0.5,
-        presence_penalty: 0.0
+        temperature: 0,
+        max_tokens: 100,
+        top_p: 1.0,
+        frequency_penalty: 0.2,
+        presence_penalty: 0.0,
+        stop: ['\n']
       }).then((response) => {
         let text = response.data.choices[0].text
         if (text && text.length > 0) {
@@ -68,25 +71,15 @@ function App() {
           //if link = null then link = ''
           if (link == null) {
             resolve(text + '\n')
+            setQuestion('')
           }
           else
           {
             resolve(text + '\n' + link)
+            setQuestion('')
+
           }
-
-          
-
-
-
-          
-          //Clear textfield on site
-          setQuestion('')
-          
-
-        } else {
           reject('Keine Antwort erhalten')
-          //promt leeren 
-
         }
       }).catch((e) => {
         reject(e)
@@ -142,14 +135,14 @@ function App() {
       // add message from human and message from AI
       setConversationHistory([
         ...conversationHistory,
-        {from: 'Du', text: question, color: 'secondary'},
+        {from: 'Human', text: question, color: 'secondary'},
         {from: aiName, text: response, color: 'primary'}
       ])
     }).catch((e) => {
       setLoading(false)
       setConversationHistory([
         ...conversationHistory,
-        {from: 'Du', text: question, color: 'secondary'},
+        {from: 'Human', text: question, color: 'secondary'},
         {from: aiName, text: 'No response', color: 'danger'}
       ])
       console.log(e)
@@ -172,7 +165,7 @@ function App() {
       <section id="content" className="full md:half lg:screen-v-scroll flex row wrap relative">
         <div className="full md:py px">
           <center>
-            <span className="large title white">OpenAI-Chatbot</span>
+            <span className="large title white">davinci-chatbot</span>
           </center>
           <br/>
           <br/>
@@ -183,8 +176,8 @@ function App() {
                        apiKey={apiKey}
                        aiName={aiName}/>
           {loading ? <>
-              Du: <span className={'blue'}>
-              {fillStringLength('Du', aiName)}
+              Human: <span className={'blue'}>
+              {fillStringLength('Human', aiName)}
               {question}
             </span>
               <center>
@@ -195,10 +188,10 @@ function App() {
               <br/>
               <br/>
             </>}
- 
+
           <br/>
-          
-                    <form onSubmit={poseQuestion}>
+
+          <form onSubmit={poseQuestion}>
             <input type="text"
                    value={question}
                    placeholder={'Stell deine Frage'}
@@ -210,10 +203,9 @@ function App() {
       </section>
       <AsideSection showConversationDebug={showConversationDebug}
                     setShowConversationDebug={setShowConversationDebug}/>
-
     </div>
   </div>
 }
 
- 
+
 export default App

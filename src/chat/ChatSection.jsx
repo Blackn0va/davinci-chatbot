@@ -14,28 +14,18 @@ export function MainContent({
   function getBotMessage(msg, index, length) {
     if (msg.text === 'No response') {
       return <span className={'fuschia'}>
-        {fillStringLength(aiName, 'Du')}
+        {fillStringLength(aiName, 'Human')}
         <i className={'grey'}>{'// No Response'}</i>
         </span>
     } else {
       return <span className={'green'}>
-        {index === length - 1 ? <TypeAnimation 
-                      autoStart={true}
-                      loop={false}
-                      cursor={false}
-                      hideCursorOnEnd={true}
-                      hideCursorOnStart={true}
-                      hideCursorOnType={true}
-                      hideCursorOnTypeAnimation={true}
-                      typespeed={1000}
-                      delay={0}  
-                      sequence={[msg.text]}
-                      wrapper={'span'}
+        {index === length - 1 ? <TypeAnimation cursor={false}
+                                               sequence={[msg.text]}
+                                               wrapper={'span'}
         /> : msg.text}
       </span>
     }
   }
-
 
 
   if (!showConversationDebug) {
@@ -52,8 +42,8 @@ export function MainContent({
     return <>
       {conversationHistory.map((msg, index) => {
         return <div key={index}>
-          {msg.from}: {msg.from === 'Du'
-          ? <span className={'blue'}>{fillStringLength('Du', aiName)}{msg.text}</span>
+          {msg.from}: {msg.from === 'Human'
+          ? <span className={'blue'}>{fillStringLength('Human', aiName)}{msg.text}</span>
           : getBotMessage(msg, index, conversationHistory.length)}
         </div>
       })}
