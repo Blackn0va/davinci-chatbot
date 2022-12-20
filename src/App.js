@@ -19,8 +19,8 @@ function getEngineId() {
 function App() {
   const [aiName, setAiName] = useState('DeinVater')
   const [tempAiName, setTempAiName] = useState('DeinVater')
-  const [attributes, setAttributes] = useState('freundlich und sarkastisch')
-  const [tempAttributes, setTempAttributes] = useState('freundlich und sarkastisch')
+  const [attributes, setAttributes] = useState('sarkastisch freundlich')
+  const [tempAttributes, setTempAttributes] = useState('sarkastisch freundlich')
   const [apiKey, setApiKey] = useState(localStorage.getItem('apiKey') || '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')
   const [tempApiKey, setTempApiKey] = useState(localStorage.getItem('apiKey') || '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')
 
