@@ -165,7 +165,7 @@ function App() {
       <section id="content" className="full md:half lg:screen-v-scroll flex row wrap relative">
         <div className="full md:py px">
           <center>
-            <span className="large title white">davinci-chatbot</span>
+            <span className="large title white"></span>
           </center>
           <br/>
           <br/>
