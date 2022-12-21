@@ -50,5 +50,7 @@ export function SettingsSection({
       <a href={'#'} onClick={saveSettings} className={'green hover'}>Speichern</a>
       <a href={'#'} onClick={resetConversation} className={'fuschia hover'}>zurücksetzen</a>
     </div>
+
+
   </section>
 }

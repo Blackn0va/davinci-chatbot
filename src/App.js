@@ -50,16 +50,15 @@ function App() {
     return new Promise((resolve, reject) => {
       openai.createCompletion(getEngineId(), {
         prompt: getPrompt(question),
-        temperature: 0,
+        temperature: 0.5,
         max_tokens: 100,
         top_p: 1.0,
-        frequency_penalty: 0.2,
-        presence_penalty: 0.0,
-        stop: ['\n']
+        frequency_penalty: 0.0,
+        presence_penalty: 0.0
       }).then((response) => {
         let text = response.data.choices[0].text
         if (text && text.length > 0) {
-          setConversation(`${getPrompt(question)}${text} \n`)
+          setConversation(`${getPrompt(question)}${text}`)
 
 
           //if text contains a link post the chat to the chatbox and the link in a new line

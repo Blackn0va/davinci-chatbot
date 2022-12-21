@@ -23,6 +23,7 @@ export function MainContent({
                                                sequence={[msg.text]}
                                                wrapper={'span'}
         /> : msg.text}
+
       </span>
     }
   }
