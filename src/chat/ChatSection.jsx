@@ -22,6 +22,7 @@ export function MainContent({
         {index === length - 1 ? <TypeAnimation cursor={false}
                                                sequence={[msg.text]}
                                                wrapper={'span'}
+                                                delay={0}
         /> : msg.text}
 
       </span>

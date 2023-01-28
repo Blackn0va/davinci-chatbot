@@ -5,7 +5,7 @@ import {Loader} from './Loader'
 import {SettingsSection} from './chat/SettingsSection'
 import {fillStringLength} from './__helper__/text-helper'
 import {MainContent} from './chat/ChatSection'
-
+ 
 function defaultConversation(aiName, attributes) {
   return `Es folgt ein Gespräch mit einer KI namens ${aiName}.
 Die KI ist ${attributes}.\n\n`
@@ -18,8 +18,8 @@ function getEngineId() {
 //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
 //meiner sk-fmVPU3kT3Bgb7rcLWF3aT3BlbkFJwOzQT3cKoz61sGkNENQ
 function App() {
-  const [aiName, setAiName] = useState('DeinVater')
-  const [tempAiName, setTempAiName] = useState('DeinVater')
+  const [aiName, setAiName] = useState('Open AI')
+  const [tempAiName, setTempAiName] = useState('Open AI')
   const [attributes, setAttributes] = useState('sarkastisch')
   const [tempAttributes, setTempAttributes] = useState('sarkastisch')
   const [apiKey, setApiKey] = useState(localStorage.getItem('apiKey') || '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')
@@ -37,7 +37,7 @@ function App() {
 
   const [conversationHistory, setConversationHistory] = useState([])
 
-
+    
   function getPrompt(question) {
     return `${conversation}Human:${question}\n
     ${aiName}:`
@@ -51,7 +51,7 @@ function App() {
       openai.createCompletion(getEngineId(), {
         prompt: getPrompt(question),
         temperature: 0.5,
-        max_tokens: 100,
+        max_tokens: 2000,
         top_p: 1.0,
         frequency_penalty: 0.0,
         presence_penalty: 0.0
@@ -70,6 +70,7 @@ function App() {
           //if link = null then link = ''
           if (link == null) {
             resolve(text + '\n')
+            
             setQuestion('')
           }
           else
