@@ -15,15 +15,13 @@ function getEngineId() {
   return 'text-davinci-003'
 }
 
-//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
-//meiner sk-fmVPU3kT3Bgb7rcLWF3aT3BlbkFJwOzQT3cKoz61sGkNENQ
 function App() {
   const [aiName, setAiName] = useState('Open AI')
   const [tempAiName, setTempAiName] = useState('Open AI')
-  const [attributes, setAttributes] = useState('sarkastisch')
-  const [tempAttributes, setTempAttributes] = useState('sarkastisch')
-  const [apiKey, setApiKey] = useState(localStorage.getItem('apiKey') || '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')
-  const [tempApiKey, setTempApiKey] = useState(localStorage.getItem('apiKey') || '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')
+  const [attributes, setAttributes] = useState('Freundlich Hilfsbereit')
+  const [tempAttributes, setTempAttributes] = useState('Freundlich Hilfsbereit')
+  const [apiKey, setApiKey] = useState(localStorage.getItem('apiKey') || '')
+  const [tempApiKey, setTempApiKey] = useState(localStorage.getItem('apiKey') || '')
 
   const [loading, setLoading] = useState(false)
 
